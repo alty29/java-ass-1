@@ -20,14 +20,12 @@ public class TechJobs {
         columnChoices.put("position type", "Position Type");
         columnChoices.put("all", "All");
 
-        // Top-level menu options
         HashMap<String, String> actionChoices = new HashMap<>();
         actionChoices.put("search", "Search");
         actionChoices.put("list", "List");
 
         System.out.println("Welcome to LaunchCode's TechJobs App!");
 
-        // Allow the user to search until they manually quit
         while (true) {
 
             String actionChoice = getUserSelection("View jobs by (type 'x' to quit):", actionChoices);
@@ -46,18 +44,14 @@ public class TechJobs {
 
                     System.out.println("\n*** All " + columnChoices.get(columnChoice) + " Values ***");
 
-                    // Print list of skills, employers, etc
                     for (String item : results) {
                         System.out.println(item);
                     }
                 }
 
-            } else { // choice is "search"
-
-                // How does the user want to search (e.g. by skill or employer)
+            } else {
                 String searchField = getUserSelection("Search by:", columnChoices);
 
-                // What is their search term?
                 System.out.println("\nSearch term:");
                 String searchTerm = in.nextLine().toUpperCase();
 
@@ -70,15 +64,11 @@ public class TechJobs {
         }
     }
 
-    // Returns the key of the selected item from the choices Dictionary
     private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
 
         int choiceIdx = -1;
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
-
-        // Put the choices in an ordered structure so we can
-        // associate an integer with each one
         int i = 0;
         for (String choiceKey : choices.keySet()) {
             choiceKeys[i] = choiceKey;
@@ -89,7 +79,6 @@ public class TechJobs {
 
             System.out.println("\n" + menuHeader);
 
-            // Print available choices
             for (int j = 0; j < choiceKeys.length; j++) {
                 System.out.println("" + j + " - " + choices.get(choiceKeys[j]));
             }
@@ -105,7 +94,6 @@ public class TechJobs {
                 }
             }
 
-            // Validate user's input
             if (choiceIdx < 0 || choiceIdx >= choiceKeys.length) {
                 System.out.println("Invalid choice. Try again.");
             } else {
@@ -117,25 +105,18 @@ public class TechJobs {
         return choiceKeys[choiceIdx];
     }
 
-    // Print a list of jobs
     private static void printJobs(ArrayList<HashMap<String, String>> someJobs) {
-//        System.out.println("printJobs is not implemented yet");
 
-        // Check if any jobs are in somejobs
         if (someJobs.size() > 0) {
-            //Using a loop to iterate over Array of HashMap Objects (Jobs)
             for (HashMap<String, String> aJob : someJobs) {
                 System.out.println("\n*****");
-                // Then nest a for-each loop to iterate over the Hashmap Objects
                 for(Map.Entry<String, String> data: aJob.entrySet()) {
                     System.out.println(data.getKey() + ": " + data.getValue());
                 }
                 System.out.println("*****");
             }
         }
-        // Else if no jobs print "No Results"
         else {
-            // Use print instead of println so that a new line is not printed after No Results to match the test output
             System.out.print("No Results");
         }
     }
