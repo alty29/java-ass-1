@@ -7,9 +7,6 @@ import java.io.IOException;
 import java.io.Reader;
 import java.util.*;
 
-/**
- * Created by LaunchCode
- */
 public class JobData {
 
     private static final String DATA_FILE = "src/main/resources/job_data.csv";
@@ -17,16 +14,8 @@ public class JobData {
 
     private static ArrayList<HashMap<String, String>> allJobs;
 
-    /**
-     * Fetch list of all values from loaded data,
-     * without duplicates, for a given column.
-     *
-     * @param field The column to retrieve values from
-     * @return List of all of the values of the given field
-     */
     public static ArrayList<String> findAll(String field) {
 
-        // load data, if not already loaded
         loadData();
 
         ArrayList<String> values = new ArrayList<>();
@@ -39,32 +28,17 @@ public class JobData {
             }
         }
 
-        // Bonus mission: sort the results
         Collections.sort(values);
 
         return values;
     }
 
     public static ArrayList<HashMap<String, String>> findAll() {
-
-        // load data, if not already loaded
         loadData();
 
-        // Bonus mission; normal version returns allJobs
         return new ArrayList<>(allJobs);
     }
 
-    /**
-     * Returns results of search the jobs data by key/value, using
-     * inclusion of the search term.
-     *
-     * For example, searching for employer "Enterprise" will include results
-     * with "Enterprise Holdings, Inc".
-     *
-     * @param column   Column that should be searched.
-     * @param value Value of teh field to search for
-     * @return List of all jobs matching the criteria
-     */
     public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
 
         loadData();
@@ -82,7 +56,6 @@ public class JobData {
 
         return jobs;
     }
-
     public static ArrayList<HashMap<String, String>> findByValue(String value) {
         loadData();
         ArrayList<HashMap<String, String>> allJobs = JobData.findAll();

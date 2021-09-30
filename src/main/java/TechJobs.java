@@ -3,16 +3,12 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-/**
- * Created by LaunchCode
- */
 public class TechJobs {
 
     static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
 
-        // Initialize our field map with key/name pairs
         HashMap<String, String> columnChoices = new HashMap<>();
         columnChoices.put("core competency", "Skill");
         columnChoices.put("employer", "Employer");
@@ -50,6 +46,7 @@ public class TechJobs {
                 }
 
             } else {
+
                 String searchField = getUserSelection("Search by:", columnChoices);
 
                 System.out.println("\nSearch term:");
@@ -63,12 +60,12 @@ public class TechJobs {
             }
         }
     }
-
     private static String getUserSelection(String menuHeader, HashMap<String, String> choices) {
 
         int choiceIdx = -1;
         Boolean validChoice = false;
         String[] choiceKeys = new String[choices.size()];
+
         int i = 0;
         for (String choiceKey : choices.keySet()) {
             choiceKeys[i] = choiceKey;
